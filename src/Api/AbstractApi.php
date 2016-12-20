@@ -85,7 +85,7 @@ abstract class AbstractApi
     {
         $defaultHeaders = [
             'User-Agent'=>$_SERVER['HTTP_USER_AGENT'],
-            'Authorization'=> 'Bearer ' . $this->clientSecret
+            'Authorization'=> 'Bearer ' . $this->session->get('access_token')
         ];
 
         if ($method == 'GET') {

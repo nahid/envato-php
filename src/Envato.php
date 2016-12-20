@@ -9,12 +9,13 @@ use Nahid\EnvatoPHP\Api\Me;
 class Envato
 {
     protected $config;
+    protected $auth;
     
     function __construct($config)
     {
         $this->config = $config;
-        $auth = new Authentication($this->config);
-        $auth->authenticate();
+        $this->auth = new Authentication($this->config);
+        $this->auth->authenticate();
     }
 
     function __call($method, $args)
@@ -42,10 +43,15 @@ class Envato
         switch ($api) {
             case 'users':
             case 'user':
-                return new User($args[0]);
+                return new User($args[0], $this->config);
             case 'me':
                 return new Me($this->config);
 
         }
+    }
+
+    public function getAuthUrl()
+    {
+        return $this->auth->getAuthUrl();
     }
 }

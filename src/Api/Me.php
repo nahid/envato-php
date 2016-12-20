@@ -94,4 +94,20 @@ class Me extends AbstractApi
                 ])
                 ->get('/v3/market/user/statement?' . $args);
     }
+
+     public function bookmarks()
+     {
+        return $this->headers([
+                    'Authorization'=> 'Bearer ' . $this->personalToken
+                ])
+                ->get('/v3/market/user/bookmarks');
+     } 
+
+     public function collection($id)
+     {
+        return $this->headers([
+                    'Authorization'=> 'Bearer ' . $this->personalToken
+                ])
+                ->get('/v3/market/user/collection?id=' . $id);
+     } 
 }
