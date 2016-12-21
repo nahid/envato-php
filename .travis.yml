@@ -3,8 +3,6 @@ php:
   - '5.6'
   - '7.0'
   - '7.1'
-  - hhvm
-  - nightly
 
 sudo: false
 
@@ -12,5 +10,5 @@ install:
   - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit --verbose --coverage-text
+  - vendor/bin/phpunit --coverage-clover clover.xml
 
