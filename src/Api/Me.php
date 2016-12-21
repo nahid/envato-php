@@ -19,18 +19,13 @@ class Me extends AbstractApi
 
     public function sales($page = 1)
     {
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/author/sales?page=' . $page);    
+         //->headers(['Authorization'=> 'Bearer ' . $this->personalToken])
+        return $this->get('/v3/market/author/sales?page=' . $page);
     }
 
     public function sale($code)
     {
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/author/sale?code=' . $code); 
+        return $this->get('/v3/market/author/sale?code=' . $code); 
     }
 
     public function username()
@@ -44,40 +39,27 @@ class Me extends AbstractApi
     }
 
     public function earningAndSalesByMonth()
-    {
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v1/market/private/user/earnings-and-sales-by-month.json');
+    {           
+        return $this->get('/v1/market/private/user/earnings-and-sales-by-month.json');
     }
 
 
     public function purchageList($filter = null, $page = 1)
     {
         $filter = is_null($filter)?'':'filter=' . $filter . '&';
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/buyer/list-purchases?'. $filter. 'page=' . $page);
+        return $this->get('/v3/market/buyer/list-purchases?'. $filter. 'page=' . $page);
     }
 
     public function buyerDownload($itemId, $purchaseCode, $shortenUrl = false)
     {
         $shortenUrl = $shortenUrl?'true':'false';
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/buyer/download?item_id=' . $itemId. '&purchase_code=' . $purchaseCode . '&shorten_url=' . $shortenUrl);
+        return $this->get('/v3/market/buyer/download?item_id=' . $itemId. '&purchase_code=' . $purchaseCode . '&shorten_url=' . $shortenUrl);
     }
 
 
     public function buyerPurchase($code)
     {
-        $shortenUrl = $shortenUrl?'true':'false';
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/buyer/purchase?code=' . $code);
+        return $this->get('/v3/market/buyer/purchase?code=' . $code);
     }
 
 
@@ -89,25 +71,16 @@ class Me extends AbstractApi
         $args .= !is_null($type)?'&type=' . $type:'';
         $args .= !is_null($site)?'&site=' . $site:'';
     
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/user/statement?' . $args);
+        return $this->get('/v3/market/user/statement?' . $args);
     }
 
      public function bookmarks()
      {
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/user/bookmarks');
+        return $this->get('/v3/market/user/bookmarks');
      } 
 
      public function collection($id)
      {
-        return $this->headers([
-                    'Authorization'=> 'Bearer ' . $this->personalToken
-                ])
-                ->get('/v3/market/user/collection?id=' . $id);
+        return $this->get('/v3/market/user/collection?id=' . $id);
      } 
 }

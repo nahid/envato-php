@@ -15,7 +15,7 @@ abstract class AbstractApi
     protected $config;
     protected $clientId;
     protected $clientSecret;
-    protected $personalToken;
+    //protected $personalToken;
     protected $redirectUri;
     private $requestMethods = [
         'GET',
@@ -32,7 +32,7 @@ abstract class AbstractApi
     {
         $this->clientId = $this->config['client_id'];
         $this->clientSecret = $this->config['client_secret'];
-        $this->personalToken = $this->config['personal_token'];
+        //$this->personalToken = $this->config['personal_token'];
         $this->redirectUri = $this->config['redirect_uri'];
 
         $this->client = new RequestHandler();
@@ -83,6 +83,7 @@ abstract class AbstractApi
 
     public function makeMethodRequest($method, $uri)
     {
+        $this->parameters['timeout'] = 60;
         $defaultHeaders = [
             'User-Agent'=>$_SERVER['HTTP_USER_AGENT'],
             'Authorization'=> 'Bearer ' . $this->session->get('access_token')
@@ -96,6 +97,7 @@ abstract class AbstractApi
             }
             
         }
+
 
         $response = new Response($this->client->http->request($method, $uri, $this->parameters));
 

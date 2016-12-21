@@ -2,7 +2,6 @@
 
 namespace Nahid\EnvatoPHP\Api;
 
-use Nahid\EnvatoPHP\HttpManager\RequestHandler;
 
 class Authentication extends AbstractApi
 {
@@ -44,7 +43,7 @@ class Authentication extends AbstractApi
         if (!is_null($response)) {
             if ($response->getStatusCode() == 200) {
                 $this->session->set('access_token', $response->data->access_token);
-                $this->session->set('refresh_token', isset($response->data->refresh_token)?$response->data->refresh_token:null);
+                $this->session->set('refresh_token', isset($response->data->refresh_token)?$response->data->refresh_token:($this->session->get('refresh_token')!=null)?$this->session->get('refresh_token'):null);
                 $this->session->set('expire', (time() + 3600));
             }
         }      
@@ -113,5 +112,11 @@ class Authentication extends AbstractApi
         return null;
     }
 
+    public function clearCache()
+    {
+        $this->session->delete('refresh_token');
+        $this->session->delete('expire');
+        $this->session->delete('access_token');
+    }
 
 }

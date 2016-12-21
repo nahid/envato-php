@@ -3,8 +3,10 @@
 namespace Nahid\EnvatoPHP;
 
 use Nahid\EnvatoPHP\Api\Authentication;
+use Nahid\EnvatoPHP\Api\Market;
 use Nahid\EnvatoPHP\Api\User;
 use Nahid\EnvatoPHP\Api\Me;
+use Nahid\EnvatoPHP\Api\Forum;
 
 class Envato
 {
@@ -46,6 +48,12 @@ class Envato
                 return new User($args[0], $this->config);
             case 'me':
                 return new Me($this->config);
+            case 'market':
+            case 'markets':
+                return new Market($this->config);
+            case 'forum':
+            case 'forums':
+                return new Forum($this->config);
 
         }
     }
@@ -53,5 +61,10 @@ class Envato
     public function getAuthUrl()
     {
         return $this->auth->getAuthUrl();
+    }
+
+    public function clearCache()
+    {
+        $this->auth->clearCache();
     }
 }
