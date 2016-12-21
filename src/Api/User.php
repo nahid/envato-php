@@ -2,8 +2,6 @@
 
 namespace Nahid\EnvatoPHP\Api;
 
-use Nahid\EnvatoPHP\HttpManager\RequestHandler;
-
 class User extends AbstractApi
 {
     protected $username = null;
