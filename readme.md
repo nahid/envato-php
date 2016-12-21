@@ -49,7 +49,7 @@ Thats it.
 ```php
 use Nahid\EnvatoPHP\Envato;
 
-$config [
+$config = [
             "client_id"     => 'envato_app_client_id',
         
             'client_secret' => 'envato_app_client_secret',
