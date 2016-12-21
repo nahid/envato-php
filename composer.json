@@ -3,13 +3,16 @@
     "description": "Envato PHP is a PHP client for envato API",
     "keywords": ["envato", "php", "api", "envato-api", "envato-php-api", "laravel-envato-api", "laravel"],
     "type": "library",
+    "license": "CC(1.0)",
     "require": {
         "php": ">=5.5.9",
         "guzzlehttp/guzzle": "^6.2",
         "duncan3dc/sessions": "^1.0"
     },
-
-    "license": "CC(1.0)",
+    "require-dev": {
+        "graham-campbell/testbench": "^3.1",
+        "phpunit/phpunit": "^4.8 || ^5.0"
+    },
     "authors": [
         {
             "name": "Nahid Bin Azhar",
