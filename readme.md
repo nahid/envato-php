@@ -71,7 +71,8 @@ $config = [
  
  But first you have to authenticate envato app. to get authenticate URL just use `$envato->getAuthUrl()`.
  
- ### For Laravel Usage
+
+### For Laravel Usage
  
  ```php
  use Nahid\EnvatoPHP\Facades\Envato;
