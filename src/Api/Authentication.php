@@ -20,6 +20,7 @@ class Authentication extends AbstractApi
     }
     public function getAuthUrl()
     {
+        $this->clearCache();
         $params = [
             'response_type'=> 'code',
             'client_id' =>  $this->clientId,
@@ -43,7 +44,7 @@ class Authentication extends AbstractApi
         if (!is_null($response)) {
             if ($response->getStatusCode() == 200) {
                 $this->session->set('access_token', $response->data->access_token);
-                $this->session->set('refresh_token', isset($response->data->refresh_token)?$response->data->refresh_token:($this->session->get('refresh_token')!=null)?$this->session->get('refresh_token'):null);
+                $this->session->set('refresh_token', isset($response->data->refresh_token)?$response->data->refresh_token:($this->session->get('refresh_token')!=null?$this->session->get('refresh_token'):'hello'));
                 $this->session->set('expire', (time() + 3600));
             }
         }      

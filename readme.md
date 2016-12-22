@@ -20,7 +20,7 @@ Nahid\EnvatoPHP\EnvatoServiceProvider::class,
 and add this facade in facades section
 
 ```php
-Nahid\EnvatoPHP\Facades\Envato::class,
+'Envato' => Nahid\EnvatoPHP\Facades\Envato::class,
 ```
 
 Run this command in your terminal
