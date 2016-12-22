@@ -56,7 +56,9 @@ $config = [
         
             'client_secret' => 'envato_app_client_secret',
         
-            "redirect_uri"  =>  'redirect_uri'
+            "redirect_uri"  =>  'redirect_uri',
+            
+             'app_name'      => 'nahid-envato-app',
         ];
         
  
