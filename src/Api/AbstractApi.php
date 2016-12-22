@@ -36,7 +36,7 @@ abstract class AbstractApi
         $this->redirectUri = $this->config['redirect_uri'];
 
         $this->client = new RequestHandler();
-        $this->session = new SessionInstance('nahid-envato-php');
+        $this->session = new SessionInstance($this->config['app_name']);
     }
 
     public function __call($func, $params)
