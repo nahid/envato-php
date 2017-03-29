@@ -99,9 +99,17 @@ abstract class AbstractApi
         }
 
 
-        $response = new Response($this->client->http->request($method, $uri, $this->parameters));
-
-        return $response;
+        try {
+            return $response = new Response($this->client->http->request($method, $uri, $this->parameters));
+        } catch (RequestException $e) {
+            return $e->getResponse();
+        } catch (ClientException $e) {
+            return $e->getResponse();
+        } catch (BadResponseException $e) {
+            return $e->getResponse();
+        } catch (ServerException $e) {
+            return $e->getResponse();
+        }
     }
 
 }
