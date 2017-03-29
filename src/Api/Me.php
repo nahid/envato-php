@@ -66,7 +66,7 @@ class Me extends AbstractApi
     public function statements($page=1, $fromDate=null, $toDate=null, $type=null, $site=null)
     {
         $args = 'page=' . $page;
-        $args .= !is_null($fromDate)?'&from_date=' . $from_date:'';
+        $args .= !is_null($fromDate)?'&from_date=' . $fromDate:'';
         $args .= !is_null($toDate)?'&to_date=' . $toDate:'';
         $args .= !is_null($type)?'&type=' . $type:'';
         $args .= !is_null($site)?'&site=' . $site:'';
