@@ -15,7 +15,8 @@ abstract class AbstractApi
     protected $config;
     protected $clientId;
     protected $clientSecret;
-    //protected $personalToken;
+    protected $personalToken;
+    protected $enablePersonalToken;
     protected $redirectUri;
     private $requestMethods = [
         'GET',
@@ -32,8 +33,9 @@ abstract class AbstractApi
     {
         $this->clientId = $this->config['client_id'];
         $this->clientSecret = $this->config['client_secret'];
-        //$this->personalToken = $this->config['personal_token'];
+        $this->personalToken = $this->config['personal_token'];
         $this->redirectUri = $this->config['redirect_uri'];
+        $this->enablePersonalToken = $this->config['use_personal_token'];
 
         $this->client = new RequestHandler();
         $this->session = new SessionInstance($this->config['app_name']);
@@ -86,7 +88,7 @@ abstract class AbstractApi
         $this->parameters['timeout'] = 60;
         $defaultHeaders = [
             'User-Agent'=>$_SERVER['HTTP_USER_AGENT'],
-            'Authorization'=> 'Bearer ' . $this->session->get('access_token')
+            'Authorization'=> 'Bearer ' . ($this->enablePersonalToken ? $this->personalToken : $this->session->get('access_token'))
         ];
 
         if ($method == 'GET') {
@@ -99,9 +101,17 @@ abstract class AbstractApi
         }
 
 
-        $response = new Response($this->client->http->request($method, $uri, $this->parameters));
-
-        return $response;
+        try {
+            return $response = new Response($this->client->http->request($method, $uri, $this->parameters));
+        } catch (RequestException $e) {
+            return $e->getResponse();
+        } catch (ClientException $e) {
+            return $e->getResponse();
+        } catch (BadResponseException $e) {
+            return $e->getResponse();
+        } catch (ServerException $e) {
+            return $e->getResponse();
+        }
     }
 
 }
