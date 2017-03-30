@@ -26,7 +26,7 @@ and add this facade in facades section
 Run this command in your terminal
 
 ```shell
-php artisan vendor:publish --tag="envato"
+php artisan vendor:publish --provider="Nahid\EnvatoPHP\EnvatoServiceProvider"
 ```
 
 after publishing your config file then open `config/envato.php` and add your envato app credentials.
@@ -81,7 +81,19 @@ $config = [
  dd($user->data);
  ```
  
+ ```php
+ // For envato purchase code verify  
  
+ use Nahid\EnvatoPHP\Facades\Envato;
+ 
+ $purchaseCode = 'purchase_code_here';
+ $purchaseVerify = Envato::me()->sale($purchaseCode);
+ if($purchaseVerify->getStatusCode() == 200) {
+    dd($purchaseVerify->data);
+ } else {
+    dd("Invalid Purchase Code");
+ }
+ ```
  
 
 
