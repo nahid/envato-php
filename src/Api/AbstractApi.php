@@ -3,6 +3,10 @@
 namespace Nahid\EnvatoPHP\Api;
 
 use duncan3dc\Sessions\SessionInstance;
+use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use Nahid\EnvatoPHP\HttpManager\RequestHandler;
 use Nahid\EnvatoPHP\HttpManager\Response;
 
