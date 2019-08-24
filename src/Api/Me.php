@@ -44,7 +44,7 @@ class Me extends AbstractApi
     }
 
 
-    public function purchageList($filter = null, $page = 1)
+    public function purchaseList($filter = null, $page = 1)
     {
         $filter = is_null($filter)?'':'filter=' . $filter . '&';
         return $this->get('/v3/market/buyer/list-purchases?'. $filter. 'page=' . $page);
